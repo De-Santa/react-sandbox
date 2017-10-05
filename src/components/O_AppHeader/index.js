@@ -4,19 +4,14 @@ import './styles.scss';
 class MainHeader extends Component {
 
   render() {
-
+    const {children} = this.props
     return (
-      <AppBar className='main-header'>
-        <Toolbar className='main-header__toolbar'>
-          <IconButton
-            color = 'contrast'
-            aria-label = 'open menu'
-            onClick={this.props.openMenu}
-          >
-            <MenuIcon />
-          </IconButton>
-        </Toolbar>
-      </AppBar>
+      <header className='app-header'>
+        <h1 className='app-header__title'>React motion scroll</h1>
+        <div className='app-header__inner-content'>
+          {children}
+        </div>
+      </header>
     )
   }
 

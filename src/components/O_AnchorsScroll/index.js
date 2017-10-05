@@ -66,13 +66,14 @@ class O_AnchorsScroll extends Component {
 
   render() {
     const { articlesOffset, currentScrollPosition, scrollMotionTo, scrollMotionActive } = this.state;
-    const { articles } = this.props;
+    const { articles, articlesType } = this.props;
 
     return (
       <div className='anchors-scroll' onWheel={this._handleMouseWheel}>
 
         <Articles
           articles = {articles}
+          articlesType = {articlesType}
           setArticlesOffset = {this.setArticlesOffset}
         />
 

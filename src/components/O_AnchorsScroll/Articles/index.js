@@ -7,13 +7,30 @@ class Articles extends Component {
     this._getArticlesOffset(this.props.articles);
   }
 
-  _getArticles = (articles) => (
+  componentDidUpdate(prevProps) {
+    if(prevProps.articlesType !== this.props.articlesType) {
+      this._getArticlesOffset(this.props.articles);
+    }
+  }
+
+  _getArticles = (articles, articlesType) => (
     articles.map(article => (
       <div key = {article.id}
            ref = {node => this[article.id] = node}
            className = 'anchors-scroll__article'
       >
-        {article.data}
+        {articlesType === 'image' ? (
+          <img
+            src={article.data}
+            className = {`anchors-scroll__article-${articlesType}`}
+          />
+        ) : (
+          <div
+            className = {`anchors-scroll__article-${articlesType}`}
+          >
+            {article.data}
+          </div>
+        )}
       </div>
     ))
   );
@@ -29,11 +46,11 @@ class Articles extends Component {
 
 
   render() {
-    const { articles } = this.props;
+    const { articles, articlesType } = this.props;
 
     return (
       <div className = 'anchors-scroll__articles'>
-        {this._getArticles(articles)}
+        {this._getArticles(articles, articlesType)}
       </div>
     )
   }

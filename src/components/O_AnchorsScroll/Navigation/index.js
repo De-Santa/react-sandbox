@@ -8,7 +8,7 @@ const Navigation = ({articles, articlesOffset, startScrollMotion}) => (
          onClick={() => {startScrollMotion(articlesOffset[article.id])}}
          className = 'anchors-scroll__anchor-link'
     >
-      {article.data}
+      {article.title || article.data}
     </li>
     ))}
   </ul>
