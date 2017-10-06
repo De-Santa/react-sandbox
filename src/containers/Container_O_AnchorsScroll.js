@@ -1,8 +1,8 @@
-import img_alex_bausch from '../static/images/imageArticles/alex_bausch.jpg'
-import img_alex_fork from '../static/images/imageArticles/alex_fork.png'
-import img_andriy_schechenko from '../static/images/imageArticles/andriy_schechenko.png'
-import img_anton_mozgovoy from '../static/images/imageArticles/anton_mozgovoy.jpg'
-import img_chami_akmeemana from '../static/images/imageArticles/chami_akmeemana.jpg'
+import img_batman from '../static/images/imageArticles/batman.jpg'
+import img_captain_america from '../static/images/imageArticles/captain_america.jpg'
+import img_hulk from '../static/images/imageArticles/hulk.jpg'
+import img_spiderman from '../static/images/imageArticles/spiderman.jpg'
+import img_superman from '../static/images/imageArticles/superman.jpg'
 
 import { connect } from 'react-redux';
 import O_AnchorsScroll from '../components/O_AnchorsScroll';
@@ -46,9 +46,9 @@ const smileyArticles = [
 ];
 
 const imageArticles = [
-  {data: img_alex_bausch, title: 'Alex Bausch'},
-  {data: img_alex_fork, title: 'Alex Fork'},
-  {data: img_andriy_schechenko, title: 'Andriy Schechenko'},
-  {data: img_anton_mozgovoy, title: 'Anton Mozgovoy'},
-  {data: img_chami_akmeemana, title: 'Chami Akmeemana'},
+  {data: img_batman, title: 'Batman'},
+  {data: img_captain_america, title: 'Capt. America'},
+  {data: img_hulk, title: 'Hulk'},
+  {data: img_spiderman, title: 'Spiderman'},
+  {data: img_superman, title: 'Superman'},
 ];
