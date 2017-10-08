@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-import AppHeader from '../O_AppHeader'
-import Container_O_AnchorsScroll from '../../containers/Container_O_AnchorsScroll';
-import '../../_commonStyles/reset.scss';
-import './styles.scss';
-//import MainMenu from '../O_MainMenu'
-//import * as T from 'prop-types';
 
+import O_AppHeader from '../O_AppHeader'
+import Container_M_Article from '../../containers/Container_M_Article'
+
+import {bemClassName} from '../../utils';
+import './styles.scss';
+
+const cn = bemClassName('se-app-layout');
 
 class SE_AppLayout extends Component {
   state = {
@@ -19,26 +20,30 @@ class SE_AppLayout extends Component {
   };
 
   render() {
-    const { articlesType } = this.state;
+    // const { articlesType } = this.state;
     //const { openMenu, closeMenu } = this.props.mainLayoutActions;
 
     return (
-      <div className='app-layout'>
-        <AppHeader>
+      <div className={cn()}>
+        <O_AppHeader
+          mix = {cn('header')}
+        >
           <div
-            className='app-header__articles-change'
-            onClick={() => {this._changeArticlesType('smiley')}}
+            className='o-app-header__articles-change'
+            //onClick={() => {this._changeArticlesType('smiley')}}
           >
             Smiley articles
           </div>
           <div
-            className='app-header__articles-change'
-            onClick={() => {this._changeArticlesType('image')}}
+            className='o-app-header__articles-change'
+            //onClick={() => {this._changeArticlesType('image')}}
           >
             Photo articles
           </div>
-        </AppHeader>
-        <Container_O_AnchorsScroll articlesType={articlesType} />
+        </O_AppHeader>
+        <Container_M_Article
+          articleType = 'image'
+        />
       </div>
     )
   }

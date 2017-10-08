@@ -1,14 +1,17 @@
 import React, { Component } from 'react';
+import {bemClassName} from '../../utils';
 import './styles.scss';
+
+const cn = bemClassName('o-app-header');
 
 class MainHeader extends Component {
 
   render() {
-    const {children} = this.props
+    const {mix, children} = this.props
     return (
-      <header className='app-header'>
-        <h1 className='app-header__title'>React motion scroll</h1>
-        <div className='app-header__inner-content'>
+      <header className={cn([mix])}>
+        <h1 className={cn('title')}>React motion scroll</h1>
+        <div className={cn('inner-content')}>
           {children}
         </div>
       </header>

@@ -1,5 +1,18 @@
-.app-layout {
+.se-app-layout {
+  position: relative;
   font-family: Helvetica;
   color: #fff;
   background: linear-gradient(to top, #dc6009, #232323);
+
+  &__header {
+    position: relative;
+  }
+
+  &__content {
+    position: relative;
+    width: 50%;
+    height: 90%;
+    flex-grow: 0;
+    overflow: auto;
+  }
 }

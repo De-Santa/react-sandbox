@@ -1,28 +1,12 @@
-.anchors-scroll {
+.m-article {
   position: relative;
-
-  &__articles {
-    position: relative;
-  }
-
-  &__article {
-    height: 100vh;
-    line-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    &-smiley {
-      font-size: 200px;
-    }
-    &-image {}
-  }
-
+  padding: 30px 0;
   &__navigation {
-    position: fixed;
+    position: absolute;
     padding: 15px 30px;
-    right: 20%;
+    left: 10%;
     top: 50%;
-    transform: translate(-20%, -50%);
+    transform: translate(-10%, -50%);
     background-color: #333;
     border: 1px solid black;
     border-radius: 10px;
@@ -43,5 +27,20 @@
     }
   }
 
-
+  &__section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 60px;
+    &:nth-last-child(1) {
+      margin-bottom: 0;
+    }
+    &-smiley {
+      font-size: 200px;
+    }
+    &-image {
+      width: 400px;
+      height: 400px;
+    }
+  }
 }
