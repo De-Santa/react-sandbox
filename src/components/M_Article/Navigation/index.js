@@ -1,12 +1,14 @@
 import React from 'react';
 import * as T from 'prop-types'
 
-const Navigation = ({cn, article, sectionsOffset, startScrollMotion}) => (
-  <ul className = {cn('navigation')}>
+const Navigation = ({className, cn, article, setScrollTo}) => (
+  <ul className = {className}>
+    {console.log(this)}
     {article.map((articleSection) => (
-      <li  key = {`${articleSection.id}-anchor`}
-           onClick={() => {startScrollMotion(sectionsOffset[articleSection.id])}}
-           className = {cn('anchor-link')}
+      <li
+        key = {`${articleSection.id}-anchor`}
+        className = {cn('anchor-link')}
+        onClick={() => {setScrollTo(articleSection.id)}}
       >
         {articleSection.title || articleSection.content}
       </li>

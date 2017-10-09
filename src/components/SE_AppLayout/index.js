@@ -25,22 +25,7 @@ class SE_AppLayout extends Component {
 
     return (
       <div className={cn()}>
-        <O_AppHeader
-          mix = {cn('header')}
-        >
-          <div
-            className='o-app-header__articles-change'
-            //onClick={() => {this._changeArticlesType('smiley')}}
-          >
-            Smiley articles
-          </div>
-          <div
-            className='o-app-header__articles-change'
-            //onClick={() => {this._changeArticlesType('image')}}
-          >
-            Photo articles
-          </div>
-        </O_AppHeader>
+        <O_AppHeader mix = {cn('header')} />
         <Container_M_Article
           articleType = 'image'
         />

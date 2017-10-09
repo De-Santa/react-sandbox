@@ -8,32 +8,39 @@ const cn = bemClassName('anchors-scroll')
 class AnchorsScroll extends Component {
 
   state = {
-    sectionsOffset: {},
     currentScrollPosition: 0,
     scrollMotionTo: 0,
     scrollMotionActive: false
   }
 
+  sections = {}
+
   componentDidMount() {
-    this._getArticleSectionsOffset(this.props.article);
     this.scrollContainer.addEventListener('scroll', this._handleUserScroll)
+    this.sections = this._getArticleSections(this.scrollContainer)
+    console.log(this);
+  }
+
+  componentDidUpdate(prevProps) {
+    if(prevProps.scrollTo !== this.props.scrollTo) {
+      this.startScrollMotion(this.sections[this.props.scrollTo].offsetTop)
+    }
   }
 
   componentWillUnmount() {
     this.scrollContainer.removeEventListener('scroll', this._handleUserScroll)
   }
 
-  _renderChildren = () => (
-    React.Children.map(this.props.children, child => {
-      if (child.type.displayName === 'Navigation')
-        return React.cloneElement(child, {
-          sectionsOffset: this.state.sectionsOffset,
-          startScrollMotion: this.startScrollMotion
-        })
-      else
-        return child
+  _getArticleSections = (container) => {
+    let sections = {};
+    const sectionsArray = [...container.childNodes];
+
+    sectionsArray.forEach((section) => {
+      sections = {...sections, [section.id]: section}
     })
-  )
+    console.log('sections', sections);
+    return sections
+  }
 
   _handleUserScroll = () => {
     if (!this.state.scrollMotionActive) {
@@ -46,17 +53,6 @@ class AnchorsScroll extends Component {
     if (this.state.scrollMotionActive) {
       this.finishScrollMotion()
     }
-  }
-
-  _getArticleSectionsOffset = () => {
-    const sectionsArray = [...this.scrollContainer.childNodes]
-    let sectionsOffset = {}
-
-    sectionsArray.forEach((section) => {
-      sectionsOffset = {...sectionsOffset, [section.id]: section.offsetTop }
-    })
-
-    this.setState({sectionsOffset})
   }
 
   setCurrentScrollPosition = (position) => {
@@ -83,7 +79,7 @@ class AnchorsScroll extends Component {
   render() {
     const { scrollContainer } = this
     const { currentScrollPosition, scrollMotionTo, scrollMotionActive } = this.state;
-    const { height, mix } = this.props
+    const { children, height, mix } = this.props
 
     return (
       <div
@@ -99,7 +95,7 @@ class AnchorsScroll extends Component {
         }}
       >
 
-        {this._renderChildren()}
+        {children}
 
         {scrollMotionActive ? (
           <Motion
@@ -112,14 +108,16 @@ class AnchorsScroll extends Component {
           >
             {currentStyles => {
               console.log('current styles', currentStyles);
-              return <ScrollSync
-                scrollContainer = {scrollContainer}
-                scrollMotionTo = {scrollMotionTo}
-                scrollMotion = {currentStyles.scrollMotion}
-                scrollMotionActive = {scrollMotionActive}
-                setCurrentScrollPosition = {this.setCurrentScrollPosition}
-                finishScrollMotion = {this.finishScrollMotion}
-              />
+              return (
+                <ScrollSync
+                  scrollContainer = {scrollContainer}
+                  scrollMotionTo = {scrollMotionTo}
+                  scrollMotion = {currentStyles.scrollMotion}
+                  scrollMotionActive = {scrollMotionActive}
+                  setCurrentScrollPosition = {this.setCurrentScrollPosition}
+                  finishScrollMotion = {this.finishScrollMotion}
+                />
+              )
             }}
           </Motion>) : (null)}
       </div>

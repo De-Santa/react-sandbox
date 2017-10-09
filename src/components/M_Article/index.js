@@ -10,6 +10,10 @@ import './styles.scss';
 
 class M_Article extends Component {
 
+  state = {
+    scrollTo: null
+  }
+
   _getArticleSection = (articleSection, articleType) => {
     switch (articleType) {
       case 'image':
@@ -43,22 +47,32 @@ class M_Article extends Component {
     ))
   )
 
+  setScrollTo = (articleSection) => {
+    this.setState({scrollTo: articleSection});
+  }
+
   render() {
     const { article, articleType } = this.props
 
     return (
-      <AnchorsScroll
-        height = '500px'
-        mix = {cn()}
-        article = {article}
+      <div
+        className = {cn()}
       >
-        {this._getArticle(article, articleType)}
-
         <Navigation
+          className = {cn('navigation')}
           cn = {cn}
           article = {article}
+          setScrollTo = {this.setScrollTo}
         />
-      </AnchorsScroll>
+
+        <AnchorsScroll
+          height = '500px'
+          scrollTo = {this.state.scrollTo}
+          mix = {cn('scroll-container')}
+        >
+          {this._getArticle(article, articleType)}
+        </AnchorsScroll>
+      </div>
     )
   }
 
