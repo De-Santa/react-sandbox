@@ -29,6 +29,9 @@ class SE_AppLayout extends Component {
         <Container_M_Article
           articleType = 'image'
         />
+        <Container_M_Article
+          articleType = 'smiley'
+        />
       </div>
     )
   }

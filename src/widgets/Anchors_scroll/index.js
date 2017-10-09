@@ -21,8 +21,9 @@ class AnchorsScroll extends Component {
     console.log(this);
   }
 
-  componentDidUpdate(prevProps) {
-    if(prevProps.scrollTo !== this.props.scrollTo) {
+  componentDidUpdate() {
+    if(this.props.scrollFired) {
+      this.props.shutdownScroll();
       this.startScrollMotion(this.sections[this.props.scrollTo].offsetTop)
     }
   }
