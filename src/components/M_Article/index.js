@@ -11,8 +11,7 @@ import './styles.scss';
 class M_Article extends Component {
 
   state = {
-    scrollTo: null,
-    scrollFired: false
+    scrollTo: null
   }
 
   _getArticleSection = (articleSection, articleType) => {
@@ -49,14 +48,11 @@ class M_Article extends Component {
   )
 
   setScrollTo = (articleSection) => {
-    this.setState({
-      scrollFired: true,
-      scrollTo: articleSection
-    });
+    this.setState({scrollTo: articleSection});
   }
 
-  shutdownScroll = () => {
-    this.setState({scrollFired: false})
+  resetScrollTo = () => {
+    this.setState({scrollTo: null})
   }
 
   render() {
@@ -71,14 +67,13 @@ class M_Article extends Component {
           cn = {cn}
           article = {article}
           setScrollTo = {this.setScrollTo}
-          toggleScroll = {this.toggleScroll}
         />
 
         <AnchorsScroll
           height = '500px'
           scrollTo = {this.state.scrollTo}
           scrollFired = {this.state.scrollFired}
-          shutdownScroll = {this.shutdownScroll}
+          resetScrollTo = {this.resetScrollTo}
           mix = {cn('scroll-container')}
         >
           {this._getArticle(article, articleType)}

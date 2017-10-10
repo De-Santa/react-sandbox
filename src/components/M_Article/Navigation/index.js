@@ -18,8 +18,7 @@ const Navigation = ({className, cn, article, setScrollTo}) => (
 
 Navigation.propTypes = {
   article: T.array.isRequired, //articles objects array
- // sectionsOffset: T.object.isRequired, //calculated top offset
- // startScrollMotion: T.func.isRequired, //starts scroll
+  setScrollTo: T.func.isRequired, //starts scroll
 };
 
 export default Navigation

@@ -18,13 +18,12 @@ class AnchorsScroll extends Component {
   componentDidMount() {
     this.scrollContainer.addEventListener('scroll', this._handleUserScroll)
     this.sections = this._getArticleSections(this.scrollContainer)
-    console.log(this);
   }
 
   componentDidUpdate() {
-    if(this.props.scrollFired) {
-      this.props.shutdownScroll();
+    if(this.props.scrollTo) {
       this.startScrollMotion(this.sections[this.props.scrollTo].offsetTop)
+      this.props.resetScrollTo()
     }
   }
 
@@ -33,13 +32,13 @@ class AnchorsScroll extends Component {
   }
 
   _getArticleSections = (container) => {
-    let sections = {};
-    const sectionsArray = [...container.childNodes];
+    let sections = {}
+    const sectionsArray = [...container.childNodes]
 
     sectionsArray.forEach((section) => {
       sections = {...sections, [section.id]: section}
     })
-    console.log('sections', sections);
+    console.log('sections', sections)
     return sections
   }
 
@@ -63,7 +62,7 @@ class AnchorsScroll extends Component {
   }
 
   startScrollMotion = (offset) => {
-    console.log('offset',offset)
+    console.log('target section offset',offset)
     this.setState({
       scrollMotionTo: offset,
       scrollMotionActive: true
@@ -91,8 +90,7 @@ class AnchorsScroll extends Component {
           position: 'relative',
           height: height || '100%',
           overflowX: 'hidden',
-          overflowY: 'scroll',
-          WebkitOverflowScrolling: 'touch'
+          overflowY: 'scroll'
         }}
       >
 
